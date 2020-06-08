@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package tutorial;
+
+option java_package = "cn.tera.protobuf.model";
+option java_outer_classname = "ModelTransformation";
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+  repeated string contacts = 4;
+}
+
+message Computer {
+  string type = 1;
+  int32 cpu = 2;
+  string merchant = 3;
+  repeated string disks = 4;
+}

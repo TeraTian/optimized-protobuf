@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package tutorial;
+
+option java_package = "cn.tera.protobuf.model";
+option java_outer_classname = "NestedTestModel";
+
+message NotNested {
+  string field1 = 1;
+  string field2 = 2;
+  string field3 = 3;
+  string field4 = 4;
+  string field5 = 5;
+  string field6 = 6;
+  string field7 = 7;
+  string field8 = 8;
+  string field9 = 9;
+  string field10 = 10;
+  string field11 = 11;
+  string field12 = 12;
+  string field13 = 13;
+  string field14 = 14;
+  string field15 = 15;
+  string field16 = 16;
+  string field17 = 17;
+  string field18 = 18;
+  string field19 = 19;
+  string field20 = 20;
+  string field21 = 21;
+  string field22 = 22;
+  string field23 = 23;
+  string field24 = 24;
+  string field25 = 25;
+  string field26 = 26;
+  string field27 = 27;
+  string field28 = 28;
+  string field29 = 29;
+  string field30 = 30;
+}
+
+message Nested {
+  Nested1 nested1 = 1;
+  Nested2 nested2 = 2;
+}
+
+message Nested1{
+  string field1 = 1;
+  string field2 = 2;
+  string field3 = 3;
+  string field4 = 4;
+  string field5 = 5;
+  string field6 = 6;
+  string field7 = 7;
+  string field8 = 8;
+  string field9 = 9;
+  string field10 = 10;
+  string field11 = 11;
+  string field12 = 12;
+  string field13 = 13;
+  string field14 = 14;
+  string field15 = 15;
+}
+
+message Nested2{
+  string field16 = 1;
+  string field17 = 2;
+  string field18 = 3;
+  string field19 = 4;
+  string field20 = 5;
+  string field21 = 6;
+  string field22 = 7;
+  string field23 = 8;
+  string field24 = 9;
+  string field25 = 10;
+  string field26 = 11;
+  string field27 = 12;
+  string field28 = 13;
+  string field29 = 14;
+  string field30 = 15;
+}

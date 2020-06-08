@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "cn.tera.protobuf.coder.models";
+option java_outer_classname = "ProtobufSimpleList";
+
+message SimpleList{
+  repeated bool booleanList = 1;
+  repeated double doubleList = 2;
+  repeated float floatList = 3;
+  repeated int32 intList = 4;
+  repeated string list = 5;
+  repeated int64 longList = 6;
+  repeated Student students = 7;
+}
+
+message Student{
+  int32 age = 1;
+  int64 hairCount = 2;
+  bool isMale = 3;
+  string name = 4;
+  double score = 5;
+  float score2 = 6;
+}
