@@ -14,6 +14,123 @@ public final class ProtobufStudent {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * Protobuf enum {@code Color}
+   */
+  public enum Color
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>BLACK = 0;</code>
+     */
+    BLACK(0),
+    /**
+     * <code>RED = 1;</code>
+     */
+    RED(1),
+    /**
+     * <code>YELLOW = 2;</code>
+     */
+    YELLOW(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>BLACK = 0;</code>
+     */
+    public static final int BLACK_VALUE = 0;
+    /**
+     * <code>RED = 1;</code>
+     */
+    public static final int RED_VALUE = 1;
+    /**
+     * <code>YELLOW = 2;</code>
+     */
+    public static final int YELLOW_VALUE = 2;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static Color valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static Color forNumber(int value) {
+      switch (value) {
+        case 0: return BLACK;
+        case 1: return RED;
+        case 2: return YELLOW;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<Color>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Color> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Color>() {
+            public Color findValueByNumber(int number) {
+              return Color.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final Color[] VALUES = values();
+
+    public static Color valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private Color(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:Color)
+  }
+
   public interface StudentOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Student)
       com.google.protobuf.MessageOrBuilder {
@@ -61,21 +178,99 @@ public final class ProtobufStudent {
     float getScore2();
 
     /**
-     * <code>string tag = 23;</code>
-     * @return The tag.
+     * <code>.Parent father = 7;</code>
+     * @return Whether the father field is set.
      */
-    java.lang.String getTag();
+    boolean hasFather();
     /**
-     * <code>string tag = 23;</code>
-     * @return The bytes for tag.
+     * <code>.Parent father = 7;</code>
+     * @return The father.
+     */
+    cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent getFather();
+    /**
+     * <code>.Parent father = 7;</code>
+     */
+    cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder getFatherOrBuilder();
+
+    /**
+     * <code>.Parent mother = 8;</code>
+     * @return Whether the mother field is set.
+     */
+    boolean hasMother();
+    /**
+     * <code>.Parent mother = 8;</code>
+     * @return The mother.
+     */
+    cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent getMother();
+    /**
+     * <code>.Parent mother = 8;</code>
+     */
+    cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder getMotherOrBuilder();
+
+    /**
+     * <code>repeated string friends = 9;</code>
+     * @return A list containing the friends.
+     */
+    java.util.List<java.lang.String>
+        getFriendsList();
+    /**
+     * <code>repeated string friends = 9;</code>
+     * @return The count of friends.
+     */
+    int getFriendsCount();
+    /**
+     * <code>repeated string friends = 9;</code>
+     * @param index The index of the element to return.
+     * @return The friends at the given index.
+     */
+    java.lang.String getFriends(int index);
+    /**
+     * <code>repeated string friends = 9;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the friends at the given index.
      */
     com.google.protobuf.ByteString
-        getTagBytes();
+        getFriendsBytes(int index);
+
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    java.util.List<cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby> 
+        getHobbiesList();
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby getHobbies(int index);
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    int getHobbiesCount();
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    java.util.List<? extends cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder> 
+        getHobbiesOrBuilderList();
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder getHobbiesOrBuilder(
+        int index);
+
+    /**
+     * <code>.Color hairColor = 11;</code>
+     * @return The enum numeric value on the wire for hairColor.
+     */
+    int getHairColorValue();
+    /**
+     * <code>.Color hairColor = 11;</code>
+     * @return The hairColor.
+     */
+    cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color getHairColor();
   }
   /**
    * Protobuf type {@code Student}
    */
-  public  static final class Student extends
+  public static final class Student extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:Student)
       StudentOrBuilder {
@@ -86,7 +281,9 @@ public final class ProtobufStudent {
     }
     private Student() {
       name_ = "";
-      tag_ = "";
+      friends_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      hobbies_ = java.util.Collections.emptyList();
+      hairColor_ = 0;
     }
 
     @java.lang.Override
@@ -109,6 +306,7 @@ public final class ProtobufStudent {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -150,10 +348,54 @@ public final class ProtobufStudent {
               score2_ = input.readFloat();
               break;
             }
-            case 186: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 58: {
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder subBuilder = null;
+              if (father_ != null) {
+                subBuilder = father_.toBuilder();
+              }
+              father_ = input.readMessage(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(father_);
+                father_ = subBuilder.buildPartial();
+              }
 
-              tag_ = s;
+              break;
+            }
+            case 66: {
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder subBuilder = null;
+              if (mother_ != null) {
+                subBuilder = mother_.toBuilder();
+              }
+              mother_ = input.readMessage(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(mother_);
+                mother_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 74: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                friends_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              friends_.add(s);
+              break;
+            }
+            case 82: {
+              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+                hobbies_ = new java.util.ArrayList<cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              hobbies_.add(
+                  input.readMessage(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.parser(), extensionRegistry));
+              break;
+            }
+            case 88: {
+              int rawValue = input.readEnum();
+
+              hairColor_ = rawValue;
               break;
             }
             default: {
@@ -171,6 +413,12 @@ public final class ProtobufStudent {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          friends_ = friends_.getUnmodifiableView();
+        }
+        if (((mutable_bitField0_ & 0x00000002) != 0)) {
+          hobbies_ = java.util.Collections.unmodifiableList(hobbies_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -194,6 +442,7 @@ public final class ProtobufStudent {
      * <code>int32 age = 1;</code>
      * @return The age.
      */
+    @java.lang.Override
     public int getAge() {
       return age_;
     }
@@ -204,6 +453,7 @@ public final class ProtobufStudent {
      * <code>int64 hairCount = 2;</code>
      * @return The hairCount.
      */
+    @java.lang.Override
     public long getHairCount() {
       return hairCount_;
     }
@@ -214,6 +464,7 @@ public final class ProtobufStudent {
      * <code>bool isMale = 3;</code>
      * @return The isMale.
      */
+    @java.lang.Override
     public boolean getIsMale() {
       return isMale_;
     }
@@ -224,6 +475,7 @@ public final class ProtobufStudent {
      * <code>string name = 4;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -240,6 +492,7 @@ public final class ProtobufStudent {
      * <code>string name = 4;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -260,6 +513,7 @@ public final class ProtobufStudent {
      * <code>double score = 5;</code>
      * @return The score.
      */
+    @java.lang.Override
     public double getScore() {
       return score_;
     }
@@ -270,44 +524,155 @@ public final class ProtobufStudent {
      * <code>float score2 = 6;</code>
      * @return The score2.
      */
+    @java.lang.Override
     public float getScore2() {
       return score2_;
     }
 
-    public static final int TAG_FIELD_NUMBER = 23;
-    private volatile java.lang.Object tag_;
+    public static final int FATHER_FIELD_NUMBER = 7;
+    private cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent father_;
     /**
-     * <code>string tag = 23;</code>
-     * @return The tag.
+     * <code>.Parent father = 7;</code>
+     * @return Whether the father field is set.
      */
-    public java.lang.String getTag() {
-      java.lang.Object ref = tag_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        tag_ = s;
-        return s;
-      }
+    @java.lang.Override
+    public boolean hasFather() {
+      return father_ != null;
     }
     /**
-     * <code>string tag = 23;</code>
-     * @return The bytes for tag.
+     * <code>.Parent father = 7;</code>
+     * @return The father.
+     */
+    @java.lang.Override
+    public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent getFather() {
+      return father_ == null ? cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.getDefaultInstance() : father_;
+    }
+    /**
+     * <code>.Parent father = 7;</code>
+     */
+    @java.lang.Override
+    public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder getFatherOrBuilder() {
+      return getFather();
+    }
+
+    public static final int MOTHER_FIELD_NUMBER = 8;
+    private cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent mother_;
+    /**
+     * <code>.Parent mother = 8;</code>
+     * @return Whether the mother field is set.
+     */
+    @java.lang.Override
+    public boolean hasMother() {
+      return mother_ != null;
+    }
+    /**
+     * <code>.Parent mother = 8;</code>
+     * @return The mother.
+     */
+    @java.lang.Override
+    public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent getMother() {
+      return mother_ == null ? cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.getDefaultInstance() : mother_;
+    }
+    /**
+     * <code>.Parent mother = 8;</code>
+     */
+    @java.lang.Override
+    public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder getMotherOrBuilder() {
+      return getMother();
+    }
+
+    public static final int FRIENDS_FIELD_NUMBER = 9;
+    private com.google.protobuf.LazyStringList friends_;
+    /**
+     * <code>repeated string friends = 9;</code>
+     * @return A list containing the friends.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getFriendsList() {
+      return friends_;
+    }
+    /**
+     * <code>repeated string friends = 9;</code>
+     * @return The count of friends.
+     */
+    public int getFriendsCount() {
+      return friends_.size();
+    }
+    /**
+     * <code>repeated string friends = 9;</code>
+     * @param index The index of the element to return.
+     * @return The friends at the given index.
+     */
+    public java.lang.String getFriends(int index) {
+      return friends_.get(index);
+    }
+    /**
+     * <code>repeated string friends = 9;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the friends at the given index.
      */
     public com.google.protobuf.ByteString
-        getTagBytes() {
-      java.lang.Object ref = tag_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        tag_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+        getFriendsBytes(int index) {
+      return friends_.getByteString(index);
+    }
+
+    public static final int HOBBIES_FIELD_NUMBER = 10;
+    private java.util.List<cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby> hobbies_;
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    @java.lang.Override
+    public java.util.List<cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby> getHobbiesList() {
+      return hobbies_;
+    }
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder> 
+        getHobbiesOrBuilderList() {
+      return hobbies_;
+    }
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    @java.lang.Override
+    public int getHobbiesCount() {
+      return hobbies_.size();
+    }
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    @java.lang.Override
+    public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby getHobbies(int index) {
+      return hobbies_.get(index);
+    }
+    /**
+     * <code>repeated .Hobby hobbies = 10;</code>
+     */
+    @java.lang.Override
+    public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder getHobbiesOrBuilder(
+        int index) {
+      return hobbies_.get(index);
+    }
+
+    public static final int HAIRCOLOR_FIELD_NUMBER = 11;
+    private int hairColor_;
+    /**
+     * <code>.Color hairColor = 11;</code>
+     * @return The enum numeric value on the wire for hairColor.
+     */
+    @java.lang.Override public int getHairColorValue() {
+      return hairColor_;
+    }
+    /**
+     * <code>.Color hairColor = 11;</code>
+     * @return The hairColor.
+     */
+    @java.lang.Override public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color getHairColor() {
+      @SuppressWarnings("deprecation")
+      cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color result = cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color.valueOf(hairColor_);
+      return result == null ? cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -342,8 +707,20 @@ public final class ProtobufStudent {
       if (score2_ != 0F) {
         output.writeFloat(6, score2_);
       }
-      if (!getTagBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 23, tag_);
+      if (father_ != null) {
+        output.writeMessage(7, getFather());
+      }
+      if (mother_ != null) {
+        output.writeMessage(8, getMother());
+      }
+      for (int i = 0; i < friends_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, friends_.getRaw(i));
+      }
+      for (int i = 0; i < hobbies_.size(); i++) {
+        output.writeMessage(10, hobbies_.get(i));
+      }
+      if (hairColor_ != cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color.BLACK.getNumber()) {
+        output.writeEnum(11, hairColor_);
       }
       unknownFields.writeTo(output);
     }
@@ -377,8 +754,29 @@ public final class ProtobufStudent {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(6, score2_);
       }
-      if (!getTagBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(23, tag_);
+      if (father_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, getFather());
+      }
+      if (mother_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getMother());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < friends_.size(); i++) {
+          dataSize += computeStringSizeNoTag(friends_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getFriendsList().size();
+      }
+      for (int i = 0; i < hobbies_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, hobbies_.get(i));
+      }
+      if (hairColor_ != cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color.BLACK.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(11, hairColor_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -409,8 +807,21 @@ public final class ProtobufStudent {
       if (java.lang.Float.floatToIntBits(getScore2())
           != java.lang.Float.floatToIntBits(
               other.getScore2())) return false;
-      if (!getTag()
-          .equals(other.getTag())) return false;
+      if (hasFather() != other.hasFather()) return false;
+      if (hasFather()) {
+        if (!getFather()
+            .equals(other.getFather())) return false;
+      }
+      if (hasMother() != other.hasMother()) return false;
+      if (hasMother()) {
+        if (!getMother()
+            .equals(other.getMother())) return false;
+      }
+      if (!getFriendsList()
+          .equals(other.getFriendsList())) return false;
+      if (!getHobbiesList()
+          .equals(other.getHobbiesList())) return false;
+      if (hairColor_ != other.hairColor_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -438,8 +849,24 @@ public final class ProtobufStudent {
       hash = (37 * hash) + SCORE2_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getScore2());
-      hash = (37 * hash) + TAG_FIELD_NUMBER;
-      hash = (53 * hash) + getTag().hashCode();
+      if (hasFather()) {
+        hash = (37 * hash) + FATHER_FIELD_NUMBER;
+        hash = (53 * hash) + getFather().hashCode();
+      }
+      if (hasMother()) {
+        hash = (37 * hash) + MOTHER_FIELD_NUMBER;
+        hash = (53 * hash) + getMother().hashCode();
+      }
+      if (getFriendsCount() > 0) {
+        hash = (37 * hash) + FRIENDS_FIELD_NUMBER;
+        hash = (53 * hash) + getFriendsList().hashCode();
+      }
+      if (getHobbiesCount() > 0) {
+        hash = (37 * hash) + HOBBIES_FIELD_NUMBER;
+        hash = (53 * hash) + getHobbiesList().hashCode();
+      }
+      hash = (37 * hash) + HAIRCOLOR_FIELD_NUMBER;
+      hash = (53 * hash) + hairColor_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -568,6 +995,7 @@ public final class ProtobufStudent {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getHobbiesFieldBuilder();
         }
       }
       @java.lang.Override
@@ -585,7 +1013,27 @@ public final class ProtobufStudent {
 
         score2_ = 0F;
 
-        tag_ = "";
+        if (fatherBuilder_ == null) {
+          father_ = null;
+        } else {
+          father_ = null;
+          fatherBuilder_ = null;
+        }
+        if (motherBuilder_ == null) {
+          mother_ = null;
+        } else {
+          mother_ = null;
+          motherBuilder_ = null;
+        }
+        friends_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (hobbiesBuilder_ == null) {
+          hobbies_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          hobbiesBuilder_.clear();
+        }
+        hairColor_ = 0;
 
         return this;
       }
@@ -613,13 +1061,38 @@ public final class ProtobufStudent {
       @java.lang.Override
       public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Student buildPartial() {
         cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Student result = new cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Student(this);
+        int from_bitField0_ = bitField0_;
         result.age_ = age_;
         result.hairCount_ = hairCount_;
         result.isMale_ = isMale_;
         result.name_ = name_;
         result.score_ = score_;
         result.score2_ = score2_;
-        result.tag_ = tag_;
+        if (fatherBuilder_ == null) {
+          result.father_ = father_;
+        } else {
+          result.father_ = fatherBuilder_.build();
+        }
+        if (motherBuilder_ == null) {
+          result.mother_ = mother_;
+        } else {
+          result.mother_ = motherBuilder_.build();
+        }
+        if (((bitField0_ & 0x00000001) != 0)) {
+          friends_ = friends_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.friends_ = friends_;
+        if (hobbiesBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0)) {
+            hobbies_ = java.util.Collections.unmodifiableList(hobbies_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.hobbies_ = hobbies_;
+        } else {
+          result.hobbies_ = hobbiesBuilder_.build();
+        }
+        result.hairColor_ = hairColor_;
         onBuilt();
         return result;
       }
@@ -687,9 +1160,50 @@ public final class ProtobufStudent {
         if (other.getScore2() != 0F) {
           setScore2(other.getScore2());
         }
-        if (!other.getTag().isEmpty()) {
-          tag_ = other.tag_;
+        if (other.hasFather()) {
+          mergeFather(other.getFather());
+        }
+        if (other.hasMother()) {
+          mergeMother(other.getMother());
+        }
+        if (!other.friends_.isEmpty()) {
+          if (friends_.isEmpty()) {
+            friends_ = other.friends_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureFriendsIsMutable();
+            friends_.addAll(other.friends_);
+          }
           onChanged();
+        }
+        if (hobbiesBuilder_ == null) {
+          if (!other.hobbies_.isEmpty()) {
+            if (hobbies_.isEmpty()) {
+              hobbies_ = other.hobbies_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureHobbiesIsMutable();
+              hobbies_.addAll(other.hobbies_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.hobbies_.isEmpty()) {
+            if (hobbiesBuilder_.isEmpty()) {
+              hobbiesBuilder_.dispose();
+              hobbiesBuilder_ = null;
+              hobbies_ = other.hobbies_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              hobbiesBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getHobbiesFieldBuilder() : null;
+            } else {
+              hobbiesBuilder_.addAllMessages(other.hobbies_);
+            }
+          }
+        }
+        if (other.hairColor_ != 0) {
+          setHairColorValue(other.getHairColorValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -719,12 +1233,14 @@ public final class ProtobufStudent {
         }
         return this;
       }
+      private int bitField0_;
 
       private int age_ ;
       /**
        * <code>int32 age = 1;</code>
        * @return The age.
        */
+      @java.lang.Override
       public int getAge() {
         return age_;
       }
@@ -755,6 +1271,7 @@ public final class ProtobufStudent {
        * <code>int64 hairCount = 2;</code>
        * @return The hairCount.
        */
+      @java.lang.Override
       public long getHairCount() {
         return hairCount_;
       }
@@ -785,6 +1302,7 @@ public final class ProtobufStudent {
        * <code>bool isMale = 3;</code>
        * @return The isMale.
        */
+      @java.lang.Override
       public boolean getIsMale() {
         return isMale_;
       }
@@ -891,6 +1409,7 @@ public final class ProtobufStudent {
        * <code>double score = 5;</code>
        * @return The score.
        */
+      @java.lang.Override
       public double getScore() {
         return score_;
       }
@@ -921,6 +1440,7 @@ public final class ProtobufStudent {
        * <code>float score2 = 6;</code>
        * @return The score2.
        */
+      @java.lang.Override
       public float getScore2() {
         return score2_;
       }
@@ -946,78 +1466,644 @@ public final class ProtobufStudent {
         return this;
       }
 
-      private java.lang.Object tag_ = "";
+      private cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent father_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder> fatherBuilder_;
       /**
-       * <code>string tag = 23;</code>
-       * @return The tag.
+       * <code>.Parent father = 7;</code>
+       * @return Whether the father field is set.
        */
-      public java.lang.String getTag() {
-        java.lang.Object ref = tag_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          tag_ = s;
-          return s;
+      public boolean hasFather() {
+        return fatherBuilder_ != null || father_ != null;
+      }
+      /**
+       * <code>.Parent father = 7;</code>
+       * @return The father.
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent getFather() {
+        if (fatherBuilder_ == null) {
+          return father_ == null ? cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.getDefaultInstance() : father_;
         } else {
-          return (java.lang.String) ref;
+          return fatherBuilder_.getMessage();
         }
       }
       /**
-       * <code>string tag = 23;</code>
-       * @return The bytes for tag.
+       * <code>.Parent father = 7;</code>
+       */
+      public Builder setFather(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent value) {
+        if (fatherBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          father_ = value;
+          onChanged();
+        } else {
+          fatherBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Parent father = 7;</code>
+       */
+      public Builder setFather(
+          cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder builderForValue) {
+        if (fatherBuilder_ == null) {
+          father_ = builderForValue.build();
+          onChanged();
+        } else {
+          fatherBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Parent father = 7;</code>
+       */
+      public Builder mergeFather(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent value) {
+        if (fatherBuilder_ == null) {
+          if (father_ != null) {
+            father_ =
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.newBuilder(father_).mergeFrom(value).buildPartial();
+          } else {
+            father_ = value;
+          }
+          onChanged();
+        } else {
+          fatherBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Parent father = 7;</code>
+       */
+      public Builder clearFather() {
+        if (fatherBuilder_ == null) {
+          father_ = null;
+          onChanged();
+        } else {
+          father_ = null;
+          fatherBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Parent father = 7;</code>
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder getFatherBuilder() {
+        
+        onChanged();
+        return getFatherFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Parent father = 7;</code>
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder getFatherOrBuilder() {
+        if (fatherBuilder_ != null) {
+          return fatherBuilder_.getMessageOrBuilder();
+        } else {
+          return father_ == null ?
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.getDefaultInstance() : father_;
+        }
+      }
+      /**
+       * <code>.Parent father = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder> 
+          getFatherFieldBuilder() {
+        if (fatherBuilder_ == null) {
+          fatherBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder>(
+                  getFather(),
+                  getParentForChildren(),
+                  isClean());
+          father_ = null;
+        }
+        return fatherBuilder_;
+      }
+
+      private cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent mother_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder> motherBuilder_;
+      /**
+       * <code>.Parent mother = 8;</code>
+       * @return Whether the mother field is set.
+       */
+      public boolean hasMother() {
+        return motherBuilder_ != null || mother_ != null;
+      }
+      /**
+       * <code>.Parent mother = 8;</code>
+       * @return The mother.
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent getMother() {
+        if (motherBuilder_ == null) {
+          return mother_ == null ? cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.getDefaultInstance() : mother_;
+        } else {
+          return motherBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Parent mother = 8;</code>
+       */
+      public Builder setMother(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent value) {
+        if (motherBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          mother_ = value;
+          onChanged();
+        } else {
+          motherBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Parent mother = 8;</code>
+       */
+      public Builder setMother(
+          cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder builderForValue) {
+        if (motherBuilder_ == null) {
+          mother_ = builderForValue.build();
+          onChanged();
+        } else {
+          motherBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Parent mother = 8;</code>
+       */
+      public Builder mergeMother(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent value) {
+        if (motherBuilder_ == null) {
+          if (mother_ != null) {
+            mother_ =
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.newBuilder(mother_).mergeFrom(value).buildPartial();
+          } else {
+            mother_ = value;
+          }
+          onChanged();
+        } else {
+          motherBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Parent mother = 8;</code>
+       */
+      public Builder clearMother() {
+        if (motherBuilder_ == null) {
+          mother_ = null;
+          onChanged();
+        } else {
+          mother_ = null;
+          motherBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Parent mother = 8;</code>
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder getMotherBuilder() {
+        
+        onChanged();
+        return getMotherFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Parent mother = 8;</code>
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder getMotherOrBuilder() {
+        if (motherBuilder_ != null) {
+          return motherBuilder_.getMessageOrBuilder();
+        } else {
+          return mother_ == null ?
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.getDefaultInstance() : mother_;
+        }
+      }
+      /**
+       * <code>.Parent mother = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder> 
+          getMotherFieldBuilder() {
+        if (motherBuilder_ == null) {
+          motherBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder>(
+                  getMother(),
+                  getParentForChildren(),
+                  isClean());
+          mother_ = null;
+        }
+        return motherBuilder_;
+      }
+
+      private com.google.protobuf.LazyStringList friends_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureFriendsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          friends_ = new com.google.protobuf.LazyStringArrayList(friends_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated string friends = 9;</code>
+       * @return A list containing the friends.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getFriendsList() {
+        return friends_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string friends = 9;</code>
+       * @return The count of friends.
+       */
+      public int getFriendsCount() {
+        return friends_.size();
+      }
+      /**
+       * <code>repeated string friends = 9;</code>
+       * @param index The index of the element to return.
+       * @return The friends at the given index.
+       */
+      public java.lang.String getFriends(int index) {
+        return friends_.get(index);
+      }
+      /**
+       * <code>repeated string friends = 9;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the friends at the given index.
        */
       public com.google.protobuf.ByteString
-          getTagBytes() {
-        java.lang.Object ref = tag_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          tag_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+          getFriendsBytes(int index) {
+        return friends_.getByteString(index);
       }
       /**
-       * <code>string tag = 23;</code>
-       * @param value The tag to set.
+       * <code>repeated string friends = 9;</code>
+       * @param index The index to set the value at.
+       * @param value The friends to set.
        * @return This builder for chaining.
        */
-      public Builder setTag(
+      public Builder setFriends(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFriendsIsMutable();
+        friends_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string friends = 9;</code>
+       * @param value The friends to add.
+       * @return This builder for chaining.
+       */
+      public Builder addFriends(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
-        tag_ = value;
+  ensureFriendsIsMutable();
+        friends_.add(value);
         onChanged();
         return this;
       }
       /**
-       * <code>string tag = 23;</code>
+       * <code>repeated string friends = 9;</code>
+       * @param values The friends to add.
        * @return This builder for chaining.
        */
-      public Builder clearTag() {
-        
-        tag_ = getDefaultInstance().getTag();
+      public Builder addAllFriends(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureFriendsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, friends_);
         onChanged();
         return this;
       }
       /**
-       * <code>string tag = 23;</code>
-       * @param value The bytes for tag to set.
+       * <code>repeated string friends = 9;</code>
        * @return This builder for chaining.
        */
-      public Builder setTagBytes(
+      public Builder clearFriends() {
+        friends_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string friends = 9;</code>
+       * @param value The bytes of the friends to add.
+       * @return This builder for chaining.
+       */
+      public Builder addFriendsBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
+        ensureFriendsIsMutable();
+        friends_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby> hobbies_ =
+        java.util.Collections.emptyList();
+      private void ensureHobbiesIsMutable() {
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          hobbies_ = new java.util.ArrayList<cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby>(hobbies_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder> hobbiesBuilder_;
+
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public java.util.List<cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby> getHobbiesList() {
+        if (hobbiesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(hobbies_);
+        } else {
+          return hobbiesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public int getHobbiesCount() {
+        if (hobbiesBuilder_ == null) {
+          return hobbies_.size();
+        } else {
+          return hobbiesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby getHobbies(int index) {
+        if (hobbiesBuilder_ == null) {
+          return hobbies_.get(index);
+        } else {
+          return hobbiesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public Builder setHobbies(
+          int index, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby value) {
+        if (hobbiesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHobbiesIsMutable();
+          hobbies_.set(index, value);
+          onChanged();
+        } else {
+          hobbiesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public Builder setHobbies(
+          int index, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder builderForValue) {
+        if (hobbiesBuilder_ == null) {
+          ensureHobbiesIsMutable();
+          hobbies_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          hobbiesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public Builder addHobbies(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby value) {
+        if (hobbiesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHobbiesIsMutable();
+          hobbies_.add(value);
+          onChanged();
+        } else {
+          hobbiesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public Builder addHobbies(
+          int index, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby value) {
+        if (hobbiesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHobbiesIsMutable();
+          hobbies_.add(index, value);
+          onChanged();
+        } else {
+          hobbiesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public Builder addHobbies(
+          cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder builderForValue) {
+        if (hobbiesBuilder_ == null) {
+          ensureHobbiesIsMutable();
+          hobbies_.add(builderForValue.build());
+          onChanged();
+        } else {
+          hobbiesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public Builder addHobbies(
+          int index, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder builderForValue) {
+        if (hobbiesBuilder_ == null) {
+          ensureHobbiesIsMutable();
+          hobbies_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          hobbiesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public Builder addAllHobbies(
+          java.lang.Iterable<? extends cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby> values) {
+        if (hobbiesBuilder_ == null) {
+          ensureHobbiesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, hobbies_);
+          onChanged();
+        } else {
+          hobbiesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public Builder clearHobbies() {
+        if (hobbiesBuilder_ == null) {
+          hobbies_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          hobbiesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public Builder removeHobbies(int index) {
+        if (hobbiesBuilder_ == null) {
+          ensureHobbiesIsMutable();
+          hobbies_.remove(index);
+          onChanged();
+        } else {
+          hobbiesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder getHobbiesBuilder(
+          int index) {
+        return getHobbiesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder getHobbiesOrBuilder(
+          int index) {
+        if (hobbiesBuilder_ == null) {
+          return hobbies_.get(index);  } else {
+          return hobbiesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public java.util.List<? extends cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder> 
+           getHobbiesOrBuilderList() {
+        if (hobbiesBuilder_ != null) {
+          return hobbiesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(hobbies_);
+        }
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder addHobbiesBuilder() {
+        return getHobbiesFieldBuilder().addBuilder(
+            cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder addHobbiesBuilder(
+          int index) {
+        return getHobbiesFieldBuilder().addBuilder(
+            index, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Hobby hobbies = 10;</code>
+       */
+      public java.util.List<cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder> 
+           getHobbiesBuilderList() {
+        return getHobbiesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder> 
+          getHobbiesFieldBuilder() {
+        if (hobbiesBuilder_ == null) {
+          hobbiesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder>(
+                  hobbies_,
+                  ((bitField0_ & 0x00000002) != 0),
+                  getParentForChildren(),
+                  isClean());
+          hobbies_ = null;
+        }
+        return hobbiesBuilder_;
+      }
+
+      private int hairColor_ = 0;
+      /**
+       * <code>.Color hairColor = 11;</code>
+       * @return The enum numeric value on the wire for hairColor.
+       */
+      @java.lang.Override public int getHairColorValue() {
+        return hairColor_;
+      }
+      /**
+       * <code>.Color hairColor = 11;</code>
+       * @param value The enum numeric value on the wire for hairColor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHairColorValue(int value) {
         
-        tag_ = value;
+        hairColor_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Color hairColor = 11;</code>
+       * @return The hairColor.
+       */
+      @java.lang.Override
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color getHairColor() {
+        @SuppressWarnings("deprecation")
+        cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color result = cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color.valueOf(hairColor_);
+        return result == null ? cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.Color hairColor = 11;</code>
+       * @param value The hairColor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHairColor(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Color value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        hairColor_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Color hairColor = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHairColor() {
+        
+        hairColor_ = 0;
         onChanged();
         return this;
       }
@@ -1074,11 +2160,1297 @@ public final class ProtobufStudent {
 
   }
 
+  public interface ParentOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Parent)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string name = 1;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 1;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>int32 age = 2;</code>
+     * @return The age.
+     */
+    int getAge();
+  }
+  /**
+   * Protobuf type {@code Parent}
+   */
+  public static final class Parent extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Parent)
+      ParentOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Parent.newBuilder() to construct.
+    private Parent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Parent() {
+      name_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Parent();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Parent(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 16: {
+
+              age_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Parent_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Parent_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.class, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder.class);
+    }
+
+    public static final int NAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>string name = 1;</code>
+     * @return The name.
+     */
+    @java.lang.Override
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 1;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int AGE_FIELD_NUMBER = 2;
+    private int age_;
+    /**
+     * <code>int32 age = 2;</code>
+     * @return The age.
+     */
+    @java.lang.Override
+    public int getAge() {
+      return age_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+      }
+      if (age_ != 0) {
+        output.writeInt32(2, age_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+      }
+      if (age_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, age_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent)) {
+        return super.equals(obj);
+      }
+      cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent other = (cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent) obj;
+
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (getAge()
+          != other.getAge()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + AGE_FIELD_NUMBER;
+      hash = (53 * hash) + getAge();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Parent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Parent)
+        cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.ParentOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Parent_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Parent_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.class, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.Builder.class);
+      }
+
+      // Construct using cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+
+        age_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Parent_descriptor;
+      }
+
+      @java.lang.Override
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent getDefaultInstanceForType() {
+        return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent build() {
+        cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent buildPartial() {
+        cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent result = new cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent(this);
+        result.name_ = name_;
+        result.age_ = age_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent) {
+          return mergeFrom((cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent other) {
+        if (other == cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent.getDefaultInstance()) return this;
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.getAge() != 0) {
+          setAge(other.getAge());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 1;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int age_ ;
+      /**
+       * <code>int32 age = 2;</code>
+       * @return The age.
+       */
+      @java.lang.Override
+      public int getAge() {
+        return age_;
+      }
+      /**
+       * <code>int32 age = 2;</code>
+       * @param value The age to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAge(int value) {
+        
+        age_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 age = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAge() {
+        
+        age_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Parent)
+    }
+
+    // @@protoc_insertion_point(class_scope:Parent)
+    private static final cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent();
+    }
+
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Parent>
+        PARSER = new com.google.protobuf.AbstractParser<Parent>() {
+      @java.lang.Override
+      public Parent parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Parent(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Parent> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Parent> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Parent getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface HobbyOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Hobby)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string name = 1;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 1;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>int32 cost = 2;</code>
+     * @return The cost.
+     */
+    int getCost();
+  }
+  /**
+   * Protobuf type {@code Hobby}
+   */
+  public static final class Hobby extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Hobby)
+      HobbyOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Hobby.newBuilder() to construct.
+    private Hobby(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Hobby() {
+      name_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Hobby();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Hobby(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 16: {
+
+              cost_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Hobby_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Hobby_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.class, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder.class);
+    }
+
+    public static final int NAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>string name = 1;</code>
+     * @return The name.
+     */
+    @java.lang.Override
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 1;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int COST_FIELD_NUMBER = 2;
+    private int cost_;
+    /**
+     * <code>int32 cost = 2;</code>
+     * @return The cost.
+     */
+    @java.lang.Override
+    public int getCost() {
+      return cost_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+      }
+      if (cost_ != 0) {
+        output.writeInt32(2, cost_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+      }
+      if (cost_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, cost_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby)) {
+        return super.equals(obj);
+      }
+      cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby other = (cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby) obj;
+
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (getCost()
+          != other.getCost()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + COST_FIELD_NUMBER;
+      hash = (53 * hash) + getCost();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Hobby}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Hobby)
+        cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.HobbyOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Hobby_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Hobby_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.class, cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.Builder.class);
+      }
+
+      // Construct using cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+
+        cost_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.internal_static_Hobby_descriptor;
+      }
+
+      @java.lang.Override
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby getDefaultInstanceForType() {
+        return cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby build() {
+        cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby buildPartial() {
+        cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby result = new cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby(this);
+        result.name_ = name_;
+        result.cost_ = cost_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby) {
+          return mergeFrom((cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby other) {
+        if (other == cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby.getDefaultInstance()) return this;
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.getCost() != 0) {
+          setCost(other.getCost());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 1;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 1;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int cost_ ;
+      /**
+       * <code>int32 cost = 2;</code>
+       * @return The cost.
+       */
+      @java.lang.Override
+      public int getCost() {
+        return cost_;
+      }
+      /**
+       * <code>int32 cost = 2;</code>
+       * @param value The cost to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCost(int value) {
+        
+        cost_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 cost = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCost() {
+        
+        cost_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Hobby)
+    }
+
+    // @@protoc_insertion_point(class_scope:Hobby)
+    private static final cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby();
+    }
+
+    public static cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Hobby>
+        PARSER = new com.google.protobuf.AbstractParser<Hobby>() {
+      @java.lang.Override
+      public Hobby parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Hobby(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Hobby> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Hobby> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public cn.tera.protobuf.coder.models.protobuf.ProtobufStudent.Hobby getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Student_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Student_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Parent_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Parent_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Hobby_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Hobby_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1088,11 +3460,17 @@ public final class ProtobufStudent {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rStudent.proto\"s\n\007Student\022\013\n\003age\030\001 \001(\005\022" +
-      "\021\n\thairCount\030\002 \001(\003\022\016\n\006isMale\030\003 \001(\010\022\014\n\004na" +
-      "me\030\004 \001(\t\022\r\n\005score\030\005 \001(\001\022\016\n\006score2\030\006 \001(\002\022" +
-      "\013\n\003tag\030\027 \001(\tB9\n&cn.tera.protobuf.coder.m" +
-      "odels.protobufB\017ProtobufStudentb\006proto3"
+      "\n\rStudent.proto\"\335\001\n\007Student\022\013\n\003age\030\001 \001(\005" +
+      "\022\021\n\thairCount\030\002 \001(\003\022\016\n\006isMale\030\003 \001(\010\022\014\n\004n" +
+      "ame\030\004 \001(\t\022\r\n\005score\030\005 \001(\001\022\016\n\006score2\030\006 \001(\002" +
+      "\022\027\n\006father\030\007 \001(\0132\007.Parent\022\027\n\006mother\030\010 \001(" +
+      "\0132\007.Parent\022\017\n\007friends\030\t \003(\t\022\027\n\007hobbies\030\n" +
+      " \003(\0132\006.Hobby\022\031\n\thairColor\030\013 \001(\0162\006.Color\"" +
+      "#\n\006Parent\022\014\n\004name\030\001 \001(\t\022\013\n\003age\030\002 \001(\005\"#\n\005" +
+      "Hobby\022\014\n\004name\030\001 \001(\t\022\014\n\004cost\030\002 \001(\005*\'\n\005Col" +
+      "or\022\t\n\005BLACK\020\000\022\007\n\003RED\020\001\022\n\n\006YELLOW\020\002B9\n&cn" +
+      ".tera.protobuf.coder.models.protobufB\017Pr" +
+      "otobufStudentb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1103,7 +3481,19 @@ public final class ProtobufStudent {
     internal_static_Student_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Student_descriptor,
-        new java.lang.String[] { "Age", "HairCount", "IsMale", "Name", "Score", "Score2", "Tag", });
+        new java.lang.String[] { "Age", "HairCount", "IsMale", "Name", "Score", "Score2", "Father", "Mother", "Friends", "Hobbies", "HairColor", });
+    internal_static_Parent_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_Parent_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Parent_descriptor,
+        new java.lang.String[] { "Name", "Age", });
+    internal_static_Hobby_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_Hobby_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Hobby_descriptor,
+        new java.lang.String[] { "Name", "Cost", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

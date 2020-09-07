@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "cn.tera.protobuf.coder.models.protobuf";
+option java_package = "cn.tera.protobuf.model";
 option java_outer_classname = "ProtobufStudent";
 
 message Student{
@@ -8,8 +8,30 @@ message Student{
   int64 hairCount = 2;
   bool isMale = 3;
   string name = 4;
-  double score = 5;
-  float score2 = 6;
+  double height = 5;
+  float weight = 6;
+  Parent father = 7;
+  Parent mother = 8;
+  repeated string friends = 9;
+  repeated Hobby hobbies = 10;
+  Color hairColor = 11;
+  bytes scores = 12;
+  uint32 uage = 13;
+  sint32 sage = 14;
+}
 
-  string tag = 23;
+message Parent {
+  string name = 1;
+  int32 age = 2;
+}
+
+message Hobby {
+  string name = 1;
+  int32 cost = 2;
+}
+
+enum Color {
+  BLACK = 0;
+  RED = 1;
+  YELLOW = 2;
 }

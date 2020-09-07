@@ -1,0 +1,1 @@
+/Users/tianjiyuan/Documents/blogs/protocol_buffer/protoc-3.12.1-osx-x86_64/bin/protoc -I=/Users/tianjiyuan/Documents/blogs/protocol_buffer/protobuf/proto --java_out=/Users/tianjiyuan/Documents/blogs/protocol_buffer/protobuf/src/main/java/ /Users/tianjiyuan/Documents/blogs/protocol_buffer/protobuf/proto/DifferentModels.proto

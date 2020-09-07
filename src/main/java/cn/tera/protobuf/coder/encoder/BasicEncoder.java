@@ -24,10 +24,11 @@ public class BasicEncoder {
 
     /**
      * 主逻辑函数
-     * @param o 序号，当第一次被调用时会传入0
-     * @param obj 模型实例
+     *
+     * @param o     序号，当第一次被调用时会传入0
+     * @param obj   模型实例
      * @param clazz 模型类
-     * @param <T> 泛型
+     * @param <T>   泛型
      * @return
      */
     public static <T> List<Byte> writeObject(int o, T obj, Class<T> clazz) {
@@ -58,19 +59,17 @@ public class BasicEncoder {
                     } else if (value instanceof List) {
                         bytes.addAll(writeList(order, (List) value));
                     } else {
-                        Class c = f.getType();
+                        Class c = f.getClass();
                         bytes.addAll(writeObject(order, f.get(obj), c));
                     }
                 }
-                order++;
             }
-            //序号+类型字节
+//序号+类型字节
             List<Byte> headBytes = new ArrayList<>();
             if (o != 0) {
                 headBytes.addAll(writeTag(o, 2));
             }
             if (headBytes.size() > 0) {
-//                headBytes.add((byte) bytes.size());
                 headBytes.addAll(writeUInt32NoTag(bytes.size()));
                 bytes.addAll(0, headBytes);
             }
@@ -85,30 +84,30 @@ public class BasicEncoder {
         return writeUInt32NoTag(value);
     }
 
-    public static List<Byte> writeList(int fieldNumber, List value) {
-        List<Byte> bytes = new ArrayList<>();
-        if (value != null && value.size() > 0) {
-            Object v = value.get(0);
-            if (v instanceof String) {
-                bytes.addAll(writeStringList(fieldNumber, value));
-            } else if (v instanceof Boolean) {
-                bytes.addAll(writeBooleanList(fieldNumber, value));
-            } else if (v instanceof Integer) {
-                bytes.addAll(writeIntegerList(fieldNumber, value));
-            } else if (v instanceof Double) {
-                bytes.addAll(writeDoubleList(fieldNumber, value));
-            } else if (v instanceof Float) {
-                bytes.addAll(writeFloatList(fieldNumber, value));
-            } else if (v instanceof Long) {
-                bytes.addAll(writeLongList(fieldNumber, value));
-            } else if (v instanceof List) {
-                bytes.addAll(writeList(fieldNumber, (List) v));
-            } else {
-                bytes.addAll(writeObjectList(fieldNumber, value));
-            }
+public static List<Byte> writeList(int order, List value) {
+    List<Byte> bytes = new ArrayList<>();
+    if (value != null && value.size() > 0) {
+        Object v = value.get(0);
+        if (v instanceof String) {
+            bytes.addAll(writeStringList(order, value));
+        } else if (v instanceof Boolean) {
+            bytes.addAll(writeNoStringList(order, value, Boolean.class));
+        } else if (v instanceof Integer) {
+            bytes.addAll(writeNoStringList(order, value, Integer.class));
+        } else if (v instanceof Double) {
+            bytes.addAll(writeNoStringList(order, value, Double.class));
+        } else if (v instanceof Float) {
+            bytes.addAll(writeNoStringList(order, value, Float.class));
+        } else if (v instanceof Long) {
+            bytes.addAll(writeNoStringList(order, value, Long.class));
+        } else if (v instanceof List) {
+            bytes.addAll(writeList(order, (List) v));
+        } else {
+            bytes.addAll(writeObjectList(order, value));
         }
-        return bytes;
     }
+    return bytes;
+}
 
     public static List<Byte> writeObjectList(int fieldNumber, List list) {
         List<Byte> bytes = new ArrayList<>();
@@ -119,29 +118,9 @@ public class BasicEncoder {
         return bytes;
     }
 
-    public static List<Byte> writeLongList(int fieldNumber, List list) {
-        return writeNoStringList(fieldNumber, list, Long.class);
-    }
-
-    public static List<Byte> writeBooleanList(int fieldNumber, List list) {
-        return writeNoStringList(fieldNumber, list, Boolean.class);
-    }
-
-    public static List<Byte> writeIntegerList(int fieldNumber, List list) {
-        return writeNoStringList(fieldNumber, list, Integer.class);
-    }
-
-    public static List<Byte> writeDoubleList(int fieldNumber, List list) {
-        return writeNoStringList(fieldNumber, list, Double.class);
-    }
-
-    public static List<Byte> writeFloatList(int fieldNumber, List list) {
-        return writeNoStringList(fieldNumber, list, Float.class);
-    }
-
-    public static <T> List<Byte> writeNoStringList(int fieldNumber, List list, Class<T> clazz) {
+    public static <T> List<Byte> writeNoStringList(int order, List list, Class<T> clazz) {
         List<Byte> bytes = new ArrayList<>();
-        bytes.addAll(writeTag(fieldNumber, 2));
+        bytes.addAll(writeTag(order, 2));
         List<Byte> contentBytes = new ArrayList<>();
         for (Object d : list) {
             if (clazz.equals(Double.class)) {
@@ -177,7 +156,6 @@ public class BasicEncoder {
         bytes.addAll(writeTag(order, 2));
         bytes.addAll(writeStringNoTag(value));
         return bytes;
-
     }
 
     public static List<Byte> writeInt32(int fieldNumber, int value) {
@@ -252,22 +230,22 @@ public class BasicEncoder {
         return bytes;
     }
 
-    public static List<Byte> writeFixed64(int fieldNumber, Double value) {
+    public static List<Byte> writeFixed64(int order, Double value) {
         List<Byte> bytes = new ArrayList<Byte>();
         if (value == null || value == 0) {
             return bytes;
         }
-        bytes.addAll(writeTag(fieldNumber, 1));
+        bytes.addAll(writeTag(order, 1));
         bytes.addAll(writeFixed64NoTag(Double.doubleToRawLongBits(value)));
         return bytes;
     }
 
-    public static List<Byte> writeFixed32(int fieldNumber, Float value) {
+    public static List<Byte> writeFixed32(int order, Float value) {
         List<Byte> bytes = new ArrayList<Byte>();
         if (value == null || value == 0) {
             return bytes;
         }
-        bytes.addAll(writeTag(fieldNumber, 5));
+        bytes.addAll(writeTag(order, 5));
         bytes.addAll(writeFixed32NoTag(Float.floatToRawIntBits(value)));
         return bytes;
     }

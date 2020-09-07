@@ -1,20 +1,12 @@
 package cn.tera.test.protobuf;
 
-import cn.tera.protobuf.model.AddressBookJson;
-import cn.tera.protobuf.model.AddressBookProtos;
-import cn.tera.protobuf.model.ModelTransformation;
-import cn.tera.protobuf.model.NestedTestModel;
+import cn.tera.protobuf.model.*;
 import cn.tera.protobuf.utility.Utility;
 import com.alibaba.fastjson.JSON;
+import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.google.protobuf.util.JsonFormat;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProtobufTest {
     /**
@@ -22,200 +14,349 @@ public class ProtobufTest {
      */
     @Test
     void basicUse() {
-        //build a person
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
+        //创建一个Person对象
+        BasicUsage.Person person = BasicUsage.Person.newBuilder()
                 .setId(5)
-                .setName("Peter")
-                .setEmail("peter@google.com")
+                .setName("tera")
+                .setEmail("tera@google.com")
                 .build();
-        System.out.println("Peter's name is " + peter.getName());
+        System.out.println("Person's name is " + person.getName());
 
-        //encode to bytes
-        byte[] bytes = peter.toByteArray();
+        //编码
+        //此时我们就可以通过我们想要的方式传递该byte数组了
+        byte[] bytes = person.toByteArray();
 
-        //decode from bytes
-        AddressBookProtos.Person clone = null;
+        //将编码重新转换回Person对象
+        BasicUsage.Person clone = null;
         try {
-            clone = AddressBookProtos.Person.parseFrom(bytes);
+            //解码
+            clone = BasicUsage.Person.parseFrom(bytes);
             System.out.println("The clone's name is " + clone.getName());
         } catch (InvalidProtocolBufferException e) {
         }
-        assertEquals(peter.getName(), clone.getName());
+
+
+        //引用是不同的
+        System.out.println("==:" + (person == clone));
+        //equals方法经过了重写，所以equals是相同的
+        System.out.println("equals:" + person.equals(clone));
+
+        //修改clone中的值
+        clone = clone.toBuilder().setName("clone").build();
+        System.out.println("The clone's new name is " + clone.getName());
+    }
+
+
+    /**
+     * 序号的重要性测试
+     *
+     * @throws Exception
+     */
+    @Test
+    public void tagImportanceTest() throws Exception {
+        TagImportance.Model1 model1 = TagImportance.Model1.newBuilder()
+                .setEmail("model1@google.com")
+                .setId(1)
+                .setName("model1")
+                .build();
+        TagImportance.Model2 model2 = TagImportance.Model2.parseFrom(model1.toByteArray());
+        System.out.println("model2 email:" + model2.getEmail());
+        System.out.println("model2 id:" + model2.getId());
+        System.out.println("model2 name:" + model2.getName());
+        System.out.println("-------model2 数据---------");
+        System.out.println(model2);
     }
 
     /**
-     * varint数字编码
+     * 序号对编码大小的影响
+     *
+     * @throws Exception
      */
     @Test
-    void varintTest() {
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
-//                .setId(91809)
-                .setId(150)
+    public void tagSizeInfluenceTest() throws Exception {
+        TagImportance.Model1 model1 = TagImportance.Model1.newBuilder()
+                .setEmail("model1@google.com")
+                .setId(1)
+                .setName("model1")
                 .build();
-        Utility.printByte(peter.toByteArray());
+        System.out.println("model1 编码大小：" + model1.toByteArray().length);
+
+        TagImportance.Model3 model3 = TagImportance.Model3.newBuilder()
+                .setEmail("model1@google.com")
+                .setId(1)
+                .setName("model1")
+                .build();
+        System.out.println("model3 编码大小：" + model3.toByteArray().length);
+    }
+
+
+    /**
+     * 测试不同模型间的转换
+     *
+     * @throws Exception
+     */
+    @Test
+    public void parseDifferentModelsTest() throws Exception {
+        //创建一个Person对象
+        DifferentModels.Person person = DifferentModels.Person.newBuilder()
+                .setName("person name")
+                .setId(1)
+                .setEmail("tera@google.com")
+                .build();
+        //对person编码
+        byte[] personBytes = person.toByteArray();
+        //将编码后的数据直接merge成Article对象
+        DifferentModels.Article article = DifferentModels.Article.parseFrom(personBytes);
+        System.out.println("article's title:" + article.getTitle());
+        System.out.println("article's wordsCount:" + article.getWordsCount());
+        System.out.println("article's author:" + article.getAuthor());
     }
 
     /**
-     * protobuf基础编码
+     * 模型字段不同类型的兼容性
+     *
+     * @throws Exception
      */
     @Test
-    void protobufBaseEncodeTest() {
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
-//                .setLarge(150)
-                .setLargeStr("abc")
+    public void typeCompatibleTest() throws Exception {
+        ModelTypeCompatible.NewPerson newPerson = ModelTypeCompatible.NewPerson.newBuilder()
+                .setName(ModelTypeCompatible.Name.newBuilder()
+                        .setFirst("tera")
+                        .setLast("cn")
+                        .setUsedYears(10)
+                ).setId(5)
+                .setEmail("tera@google.com")
                 .build();
-        Utility.printByte(peter.toByteArray());
-    }
-
-    /**
-     * 负数
-     */
-    @Test
-    void negativeIntTest() {
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
-//                .setId(-12392)
-                .setId(-22)
-                .build();
-        Utility.printByte(peter.toByteArray());
-    }
-
-    /**
-     * uint类型
-     */
-    @Test
-    void negativeUIntTest() {
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
-                .setUintf(-22)
-                .build();
-        Utility.printByte(peter.toByteArray());
-    }
-
-    /**
-     * sint类型
-     */
-    @Test
-    void negativeSIntTest() {
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
-                .setSintf(23)
-                .build();
-        Utility.printByte(peter.toByteArray());
-    }
-
-    /**
-     * double和float
-     */
-    @Test
-    void doubleAndFloatTest() {
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
-                .setF2(8.25F)
-//                .setD(1)
-                .build();
-        Utility.printByte(peter.toByteArray());
-    }
-
-    /**
-     * 子对象
-     */
-    @Test
-    void embeddedTest() {
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
-                .setEmbedded(
-                        AddressBookProtos.Embedded.newBuilder()
-                                .setE1(1))
-                .build();
-        Utility.printByte(peter.toByteArray());
-    }
-
-    /**
-     * repeated string
-     */
-    @Test
-    void repeatedStringTest() {
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
-                .addContacts("1")
-                .addContacts("2")
-                .addContacts("3")
-                .build();
-        Utility.printByte(peter.toByteArray());
-    }
-
-    /**
-     * repeated int
-     */
-    @Test
-    void repeatedIntTest() {
-        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
-                .addNumList(1)
-                .addNumList(2)
-                .addNumList(3)
-                .build();
-        Utility.printByte(peter.toByteArray());
+        ModelTypeCompatible.OldPerson oldPerson = ModelTypeCompatible.OldPerson.parseFrom(newPerson.toByteArray());
+        System.out.println(oldPerson.getName());
     }
 
     /**
      * json和protobuf的互相转换
      */
     @Test
-    void jsonToProtobuf() {
+    void jsonToProtobuf() throws Exception {
         //构造简单的模型
-        AddressBookJson model = new AddressBookJson();
-        model.email = "test@tera.com";
+        PersonJson model = new PersonJson();
+        model.email = "personJson@google.com";
         model.id = 1;
-        model.name = "tera";
-        List<String> contacts = new ArrayList<String>();
-        contacts.add("mum");
-        contacts.add("dad");
-        contacts.add("sister");
+        model.name = "personJson";
         String json = JSON.toJSONString(model);
+        System.out.println("原始json");
+        System.out.println("------------------------");
         System.out.println(json);
         System.out.println();
 
         //parser
         JsonFormat.Parser parser = JsonFormat.parser();
         //需要build才能转换
-        AddressBookProtos.Person.Builder personBuilder = AddressBookProtos.Person.newBuilder();
-        try {
-            //转换并打印
-            parser.merge(json, personBuilder);
-            AddressBookProtos.Person person = personBuilder.build();
-            //需要注意的是，protobuf的toString方法并不会自动转换成json，而是以更简单的方式呈现，所以一般没法直接用
-            System.out.println(person.toString());
+        BasicUsage.Person.Builder personBuilder = BasicUsage.Person.newBuilder();
+        //将json字符串转换成protobuf模型，并打印
+        parser.merge(json, personBuilder);
+        BasicUsage.Person person = personBuilder.build();
+        //需要注意的是，protobuf的toString方法并不会自动转换成json，而是以更简单的方式呈现，所以一般没法直接用
+        System.out.println("protobuf内容");
+        System.out.println("------------------------");
+        System.out.println(person.toString());
 
-            //修改protobuf模型中的字段，并再转换会json字符串
-            person = person.toBuilder().setName("protobuf").setId(2).build();
-            String buftoJson = JsonFormat.printer().print(person);
-            System.out.println(buftoJson);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
+        //修改protobuf模型中的字段，并再转换会json字符串
+        person = person.toBuilder().setName("protobuf").setId(2).build();
+        String buftoJson = JsonFormat.printer().print(person);
+        System.out.println("protobuf修改过数据后的json");
+        System.out.println("------------------------");
+        System.out.println(buftoJson);
     }
 
     /**
-     * 不同模型之间的转换
+     * json和protobuf的编码数据大小
      */
     @Test
-    void modelTransformationTest() {
-        //build a person
-        ModelTransformation.Person peter = ModelTransformation.Person.newBuilder()
-                .setId(5)
-                .setName("Peter")
-                .setEmail("peter@google.com")
-                .build();
-        System.out.println(peter.toString());
-        System.out.println();
+    void codeSizeJsonVsProtobuf() throws Exception {
+        //构造简单的模型
+        PersonJson model = new PersonJson();
+        model.email = "personJson@google.com";
+        model.id = 1;
+        model.name = "personJson";
+        String json = JSON.toJSONString(model);
+        System.out.println("原始json");
+        System.out.println("------------------------");
+        System.out.println(json);
+        System.out.println("json编码后的字节数：" + json.getBytes("utf-8").length + "\n");
 
-        //encode to bytes
-        byte[] bytes = peter.toByteArray();
-
-        //decode from bytes
-        ModelTransformation.Computer computer = null;
-        try {
-            computer = ModelTransformation.Computer.parseFrom(bytes);
-            System.out.println(computer.toString());
-        } catch (InvalidProtocolBufferException e) {
-        }
+        //parser
+        JsonFormat.Parser parser = JsonFormat.parser();
+        //需要build才能转换
+        BasicUsage.Person.Builder personBuilder = BasicUsage.Person.newBuilder();
+        //将json字符串转换成protobuf模型，并打印
+        parser.merge(json, personBuilder);
+        BasicUsage.Person person = personBuilder.build();
+        //需要注意的是，protobuf的toString方法并不会自动转换成json，而是以更简单的方式呈现，所以一般没法直接用
+        System.out.println("protobuf内容");
+        System.out.println("------------------------");
+        System.out.println(person.toString());
+        System.out.println("protobuf编码后的字节数：" + person.toByteArray().length);
     }
+
+
+    /**
+     * varint数字编码
+     */
+    @Test
+    void varintTest() {
+        BasicUsage.Person person = BasicUsage.Person.newBuilder()
+                .setId(91809)
+                .build();
+        Utility.printByte(person.toByteArray());
+    }
+
+    /**
+     * protobuf基础编码，varint类型
+     */
+    @Test
+    void protobufBaseEncodeTestVarint() {
+        ProtobufStudent.Student student = ProtobufStudent.Student.newBuilder()
+                .setAge(15)
+                .setHairCount(239281373231123L)
+                .setIsMale(true)
+                .setHairColor(ProtobufStudent.Color.RED)
+                .build();
+        Utility.printByte(student.toByteArray());
+    }
+
+    /**
+     * protobuf基础编码，double和float类型
+     */
+    @Test
+    void protobufBaseEncodeTestDoubleAndFloat() {
+        ProtobufStudent.Student student = ProtobufStudent.Student.newBuilder()
+                .setHeight(99.6)
+                .setWeight(99.6F)
+                .build();
+        Utility.printByte(student.toByteArray());
+    }
+
+    /**
+     * protobuf基础编码，lengthDelimited类型
+     */
+    @Test
+    void protobufBaseEncodeTestLengthDelimited() {
+        ProtobufStudent.Student student = ProtobufStudent.Student.newBuilder()
+//            .setName("tera")
+//            .setScores(ByteString.copyFrom(new byte[200]))
+//            .addFriends("a")
+//            .addFriends("b")
+//            .setFather(ProtobufStudent.Parent.newBuilder()
+//                    .setName("MrTera"))
+                .addHobbies(ProtobufStudent.Hobby.newBuilder().setName("a"))
+                .addHobbies(ProtobufStudent.Hobby.newBuilder().setName("b"))
+                .build();
+        Utility.printByte(student.toByteArray());
+    }
+
+
+    /**
+     * protobuf基础编码，有符号的整数
+     */
+    @Test
+    void negativeIntTest() {
+        ProtobufStudent.Student student = ProtobufStudent.Student.newBuilder()
+            .setAge(-7)
+//            .setUage(-7)
+//                .setSage(-7)
+                .build();
+        Utility.printByte(student.toByteArray());
+    }
+
+    /**
+     * 一个相对完整的模型
+     */
+    @Test
+    void entireModelTest() {
+        ProtobufStudent.Student student = ProtobufStudent.Student.newBuilder()
+                .setAge(12)
+                .setName("tera")
+                .setIsMale(true)
+                .setFather(ProtobufStudent.Parent.newBuilder()
+                        .setName("MrTera"))
+                .addFriends("peter")
+                .build();
+        Utility.printByte(student.toByteArray());
+    }
+
+/**
+ * 数据类型的分辨
+ */
+@Test
+void differDatatype() {
+    ProtobufStudent.Student student = ProtobufStudent.Student.newBuilder()
+            .setName("aaa")
+            .setScores(ByteString.copyFrom(new byte[]{97, 97, 97}))
+            .build();
+    Utility.printByte(student.toByteArray());
+}
+//
+//    /**
+//     * sint类型
+//     */
+//    @Test
+//    void negativeSIntTest() {
+//        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
+//                .setSintf(-1)
+//                .build();
+//        Utility.printByte(peter.toByteArray());
+//    }
+//
+//    /**
+//     * double和float
+//     */
+//    @Test
+//    void doubleAndFloatTest() {
+//        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
+//                .setF2(8.25F)
+////                .setD(1)
+//                .build();
+//        Utility.printByte(peter.toByteArray());
+//    }
+//
+//    /**
+//     * 子对象
+//     */
+//    @Test
+//    void embeddedTest() {
+//        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
+//                .setEmbedded(
+//                        AddressBookProtos.Embedded.newBuilder()
+//                                .setE1(1))
+//                .build();
+//        Utility.printByte(peter.toByteArray());
+//    }
+//
+//    /**
+//     * repeated string
+//     */
+//    @Test
+//    void repeatedStringTest() {
+//        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
+//                .addContacts("1")
+//                .addContacts("2")
+//                .addContacts("3")
+//                .build();
+//        Utility.printByte(peter.toByteArray());
+//    }
+//
+//    /**
+//     * repeated int
+//     */
+//    @Test
+//    void repeatedIntTest() {
+//        AddressBookProtos.Person peter = AddressBookProtos.Person.newBuilder()
+//                .addNumList(1)
+//                .addNumList(2)
+//                .addNumList(3)
+//                .build();
+//        Utility.printByte(peter.toByteArray());
+//    }
+
 
     /**
      * 比较较多数量的字段分别采用平铺和子对象方式的编码大小
@@ -254,7 +395,7 @@ public class ProtobufTest {
      * 为了使得比较相对更趋近于真实情况，因此对于每个字段的key采用6个字符，value采用8个字符
      */
     @Test
-    void CompareFieldNest() {
+    void compareFieldNest() {
         String source0 = "{\"asdcvc\":\"9cidk3og\",\"zlzlzo\":\"zkzia81i\",\"qieuIU\":\"4c5d8rov\",\"KLCKDI\":\"29384959\",\"zlapap\":\"sfdsewsd\",\"IOIOud\":\"kcicicic\",\"cmvjkf\":\"kiaiskwi\"}";
         Utility.PrintCompareResult("七个字段", source0, com.tera.huazhu.protobufmodel.Nested.Seven1.newBuilder());
 

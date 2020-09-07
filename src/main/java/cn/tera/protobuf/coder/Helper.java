@@ -1,7 +1,6 @@
 package cn.tera.protobuf.coder;
 
 import cn.tera.protobuf.coder.annotations.Ignore;
-import cn.tera.protobuf.coder.annotations.Tag;
 import cn.tera.protobuf.coder.annotations.Version;
 import com.google.protobuf.Message;
 import com.google.protobuf.util.JsonFormat;
@@ -83,17 +82,17 @@ public class Helper {
 
     public static Map<Integer, Field> sortFields(List<Field> fields) {
         Map<Integer, Field> result = new HashMap<>();
-        Set<String> tagedNames = new HashSet<>();
-        //寻找被指定Tag的字段
-        for (Field f : fields) {
-            Tag tag = f.getAnnotation(Tag.class);
-            if (tag != null) {
-                result.put(tag.value(), f);
-                tagedNames.add(f.getName());
-            }
-        }
-        List<Field> fieldList = fields;
-        fieldList.removeIf(f -> tagedNames.contains(f.getName()));
+//        Set<String> tagedNames = new HashSet<>();
+//        //寻找被指定Tag的字段
+//        for (Field f : fields) {
+//            Tag tag = f.getAnnotation(Tag.class);
+//            if (tag != null) {
+//                result.put(tag.value(), f);
+//                tagedNames.add(f.getName());
+//            }
+//        }
+//        List<Field> fieldList = fields;
+//        fieldList.removeIf(f -> tagedNames.contains(f.getName()));
         //
 //        fields.removeIf(f -> tagedNames.contains(f.getName()));
 

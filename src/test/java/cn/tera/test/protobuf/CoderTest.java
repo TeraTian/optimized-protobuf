@@ -6,33 +6,36 @@ import cn.tera.protobuf.coder.encoder.BasicEncoder;
 import cn.tera.protobuf.coder.models.java.Student;
 import cn.tera.protobuf.coder.models.protobuf.ProtobufStudent;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.google.protobuf.Message;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class CoderTest {
-    @Test
-    void basicEncoderTest() {
-        String source = "{\"score2\":13213.1231,\"age\":5,\"name\":\"Peter\",\"hairCount\":183728182371871131,\"isMale\":true,\"score\":13213.1231}";
-        test(source, Student.class, ProtobufStudent.Student.class);
-    }
+/**
+ * 类库的基本使用方式
+ */
+@Test
+void basicEncoderTest() {
+    String source = "{\"score2\":13213.1231,\"age\":5,\"name\":\"Peter\",\"hairCount\":183728182371871131,\"isMale\":true,\"score\":13213.1231}";
+    test(source, Student.class, ProtobufStudent.Student.class);
+}
 
+    /**
+     * tag注解的使用
+     */
     @Test
-    void tagAnnotationTest(){
+    void tagAnnotationTest() {
         String source = "{\"name\":\"Peter\",\"score\":13213.1231,\"tag\":\"tagtest\"}";
         test(source, Student.class, ProtobufStudent.Student.class);
     }
 
+    /**
+     * ignore注解的使用
+     */
     @Test
-    void ignoreAnnotationTest(){
+    void ignoreAnnotationTest() {
         String source = "{\"name\":\"Peter\",\"score\":13213.1231,\"ignore\":\"ignoretest\"}";
         test(source, Student.class, ProtobufStudent.Student.class);
     }
-
 
 
     /**
@@ -44,27 +47,31 @@ public class CoderTest {
      */
     static <T, P extends Message> void test(String source, Class<T> javaClass, Class<P> protobufClass) {
         try {
+            //输出原始json
             System.out.println("-------------------     source json     --------------------");
             System.out.println(source);
             System.out.println("count:" + source.getBytes().length);
             System.out.println();
+
+            //输出protobuf原生类库的编码结果
             System.out.println("-------------------protobuf encode result-------------------");
             Message.Builder builder = (Message.Builder) protobufClass.getMethod("newBuilder").invoke(null);
             byte[] protoBytes = Helper.protobufSerialize(source, builder);
             Helper.printBytes(protoBytes);
-            builder.mergeFrom(protoBytes);
 
-
+            //输出字节写的类库的编码结果
             System.out.println();
             System.out.println("-------------------  tera encode result  -------------------");
             T javaModel = JSON.parseObject(source, javaClass);
             byte[] teraBytes = BasicEncoder.serialize(javaModel, javaClass);
             Helper.printBytes(teraBytes);
 
+            //比较两种编码结果
             System.out.println();
             System.out.println("------------------- bytes compare result -------------------");
             System.out.println(Helper.compareBytes(protoBytes, teraBytes));
 
+            //打印解码结果
             System.out.println();
             System.out.println("-------------------  tera decode result  -------------------");
             T deserialJavaModel = new BasicDecoder().deserialize(teraBytes, javaClass);
@@ -73,7 +80,5 @@ public class CoderTest {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-        System.out.println("");
     }
 }
