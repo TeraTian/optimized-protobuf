@@ -260,7 +260,7 @@ public class ProtobufTest {
     @Test
     void negativeIntTest() {
         ProtobufStudent.Student student = ProtobufStudent.Student.newBuilder()
-            .setAge(-7)
+                .setAge(-7)
 //            .setUage(-7)
 //                .setSage(-7)
                 .build();
@@ -283,17 +283,17 @@ public class ProtobufTest {
         Utility.printByte(student.toByteArray());
     }
 
-/**
- * 数据类型的分辨
- */
-@Test
-void differDatatype() {
-    ProtobufStudent.Student student = ProtobufStudent.Student.newBuilder()
-            .setName("aaa")
-            .setScores(ByteString.copyFrom(new byte[]{97, 97, 97}))
-            .build();
-    Utility.printByte(student.toByteArray());
-}
+    /**
+     * 数据类型的分辨
+     */
+    @Test
+    void differDatatype() {
+        ProtobufStudent.Student student = ProtobufStudent.Student.newBuilder()
+                .setName("aaa")
+                .setScores(ByteString.copyFrom(new byte[]{97, 97, 97}))
+                .build();
+        Utility.printByte(student.toByteArray());
+    }
 //
 //    /**
 //     * sint类型

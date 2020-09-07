@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "cn.tera.protobuf.coder.models.protobuf";
+option java_outer_classname = "CoderTestModel";
+
+message Student{
+  int32 age = 1;
+  Parent father = 2;
+  repeated string friends = 3;
+  int64 hairCount = 4;
+  double height = 5;
+  repeated Hobby hobbies = 6;
+  bool isMale = 7;
+  Parent mother = 8;
+  string name = 9;
+  float weight = 10;
+}
+
+message Parent {
+  int32 age = 1;
+  string name = 2;
+}
+
+message Hobby {
+  int32 cost = 1;
+  string name = 2;
+}

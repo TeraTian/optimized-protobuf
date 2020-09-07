@@ -72,6 +72,8 @@ public class Helper {
             fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
             clazz = clazz.getSuperclass();
         }
+        //但需要排除内部类的this$
+        fields.removeIf(f -> f.getName().startsWith("this$"));
         //过滤ignore字段
         fields.removeIf(f -> {
             Ignore ignore = f.getAnnotation(Ignore.class);
@@ -82,19 +84,6 @@ public class Helper {
 
     public static Map<Integer, Field> sortFields(List<Field> fields) {
         Map<Integer, Field> result = new HashMap<>();
-//        Set<String> tagedNames = new HashSet<>();
-//        //寻找被指定Tag的字段
-//        for (Field f : fields) {
-//            Tag tag = f.getAnnotation(Tag.class);
-//            if (tag != null) {
-//                result.put(tag.value(), f);
-//                tagedNames.add(f.getName());
-//            }
-//        }
-//        List<Field> fieldList = fields;
-//        fieldList.removeIf(f -> tagedNames.contains(f.getName()));
-        //
-//        fields.removeIf(f -> tagedNames.contains(f.getName()));
 
         List<Field> sortedFields = new ArrayList<>();
         Map<Integer, List<Field>> groups = Helper.groupBy(fields, f -> {

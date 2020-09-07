@@ -59,12 +59,12 @@ public class BasicEncoder {
                     } else if (value instanceof List) {
                         bytes.addAll(writeList(order, (List) value));
                     } else {
-                        Class c = f.getClass();
+                        Class c = value.getClass();
                         bytes.addAll(writeObject(order, f.get(obj), c));
                     }
                 }
             }
-//序号+类型字节
+            //序号+类型字节
             List<Byte> headBytes = new ArrayList<>();
             if (o != 0) {
                 headBytes.addAll(writeTag(o, 2));
@@ -84,30 +84,30 @@ public class BasicEncoder {
         return writeUInt32NoTag(value);
     }
 
-public static List<Byte> writeList(int order, List value) {
-    List<Byte> bytes = new ArrayList<>();
-    if (value != null && value.size() > 0) {
-        Object v = value.get(0);
-        if (v instanceof String) {
-            bytes.addAll(writeStringList(order, value));
-        } else if (v instanceof Boolean) {
-            bytes.addAll(writeNoStringList(order, value, Boolean.class));
-        } else if (v instanceof Integer) {
-            bytes.addAll(writeNoStringList(order, value, Integer.class));
-        } else if (v instanceof Double) {
-            bytes.addAll(writeNoStringList(order, value, Double.class));
-        } else if (v instanceof Float) {
-            bytes.addAll(writeNoStringList(order, value, Float.class));
-        } else if (v instanceof Long) {
-            bytes.addAll(writeNoStringList(order, value, Long.class));
-        } else if (v instanceof List) {
-            bytes.addAll(writeList(order, (List) v));
-        } else {
-            bytes.addAll(writeObjectList(order, value));
+    public static List<Byte> writeList(int order, List value) {
+        List<Byte> bytes = new ArrayList<>();
+        if (value != null && value.size() > 0) {
+            Object v = value.get(0);
+            if (v instanceof String) {
+                bytes.addAll(writeStringList(order, value));
+            } else if (v instanceof Boolean) {
+                bytes.addAll(writeNoStringList(order, value, Boolean.class));
+            } else if (v instanceof Integer) {
+                bytes.addAll(writeNoStringList(order, value, Integer.class));
+            } else if (v instanceof Double) {
+                bytes.addAll(writeNoStringList(order, value, Double.class));
+            } else if (v instanceof Float) {
+                bytes.addAll(writeNoStringList(order, value, Float.class));
+            } else if (v instanceof Long) {
+                bytes.addAll(writeNoStringList(order, value, Long.class));
+            } else if (v instanceof List) {
+                bytes.addAll(writeList(order, (List) v));
+            } else {
+                bytes.addAll(writeObjectList(order, value));
+            }
         }
+        return bytes;
     }
-    return bytes;
-}
 
     public static List<Byte> writeObjectList(int fieldNumber, List list) {
         List<Byte> bytes = new ArrayList<>();
