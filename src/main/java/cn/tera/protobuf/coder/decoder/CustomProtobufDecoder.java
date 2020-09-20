@@ -48,24 +48,30 @@ public class CustomProtobufDecoder {
                     } else if (field.getType().equals(float.class)) {
                         field.set(result, readFloat());
                     } else if (field.getType().equals(String.class)) {
+                        //判断是否需要走默认值逻辑
                         if (isDefault) {
                             int defaultIndex = readRawVarint32();
                             int index = defaultIndex >> 1;
+                            //获取序号字节类型的最后一个bit，判断是否要走替换的逻辑
                             boolean replace = (defaultIndex & 1) == 1;
+                            //对于客户端来说，没有多版本的概念，所以直接
                             DecodeDefault feature = field.getAnnotation(DecodeDefault.class);
                             if (feature != null) {
                                 String[] values = feature.value();
                                 if (values.length > index) {
                                     if (replace) {
+                                        //如果需要替换，那么久一个一个替换
                                         String params = readString();
                                         List<String> paramList = Arrays.asList(params.split(split));
                                         field.set(result, Helper.format(values[index], paramList, split));
                                     } else {
+                                        //不需要替换，那就直接取索引对应的默认值即可
                                         field.set(result, values[index]);
                                     }
                                 }
                             }
                         } else {
+                            //不需要默认值，那么就正常解码即可
                             field.set(result, readString());
                         }
                     } else if (field.getType().equals(int.class)) {

@@ -53,16 +53,21 @@ public class CustomProtobufEncoder {
                     {
                         if (value instanceof String) {
                             String str = (String) value;
+                            //这里为了APP多版本的兼容，因此允许定义多个EncodeDefault
                             EncodeDefaults multiple = f.getAnnotation(EncodeDefaults.class);
                             if (multiple != null) {
                                 EncodeDefault[] singles = multiple.value();
                                 if (singles.length > 0) {
                                     int startIndex = 0;
+                                    //这里就需要遍历多个EncodeDefault了，每一个EncodeDefault代表了一个APP的版本
                                     for (int i = 0; i < singles.length; i++) {
                                         EncodeDefault single = singles[i];
+                                        //这里判断当前请求的APP版本是否符合当前Default配置的版本要求
                                         if (single.version().isEmpty() || comparator.compare(appVersion, single.version()) >= 0) {
+                                            //寻找数据的值是否在默认值的列表中
                                             FindIndexResult indexResult = findIndex(startIndex, single.value(), str, single.replace());
                                             int index = indexResult.index;
+                                            //如果找到了索引，那么久调用writeDefaultString方法，否则则直接调用最后正常写入字符串的方法
                                             if (index >= 0) {
                                                 bytes.addAll(writeDefaultString(fieldNum, index, indexResult.params));
                                                 break label1;
@@ -74,6 +79,7 @@ public class CustomProtobufEncoder {
                                     }
                                 }
                             } else {
+                                //如果只有一个Default，那么就直接处理即可
                                 EncodeDefault single = f.getAnnotation(EncodeDefault.class);
                                 if (single != null && (single.version().isEmpty() || comparator.compare(appVersion, single.version()) >= 0)) {
                                     FindIndexResult indexResult = findIndex(0, single.value(), str, single.replace());
@@ -136,11 +142,15 @@ public class CustomProtobufEncoder {
 
     private List<Byte> writeDefaultString(int fieldNum, int index, List<String> params) {
         List<Byte> bytes = new ArrayList<>();
+        //序号类型字节的最后一个bit用1表示需要默认值
         bytes.addAll(writeTag(fieldNum, 1));
         if (params == null || params.size() == 0) {
+            //如果是非替换的默认值，那么直接写入默认值的索引即可，并且索引的最后一个bit标识为0
             bytes.addAll(writeInt32NoTag(index << 1 | 0));
         } else {
+            //如果是需要替换的默认值，那么默认值的索引值最后一个bit需要标识为1
             bytes.addAll(writeInt32NoTag(index << 1 | 1));
+            //将需要替换的部分用^分隔开，写入编码结果中
             bytes.addAll(writeStringNoTag(String.join("^", params)));
         }
         return bytes;
