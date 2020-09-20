@@ -8,8 +8,14 @@ import cn.tera.protobuf.coder.models.java.Student;
 import cn.tera.protobuf.coder.models.protobuf.CoderTestModel;
 import cn.tera.protobuf.coder.models.protobuf.ProtobufStudent;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.google.protobuf.Message;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 public class CoderTest {
     /**
@@ -38,6 +44,22 @@ public class CoderTest {
     public void complexModelTest() {
         String source = "{\"age\":13,\"father\":{\"age\":45,\"name\":\"Tom\"},\"friends\":[\"mary\",\"peter\",\"john\"],\"hairCount\":342728123942,\"height\":180.3,\"hobbies\":[{\"cost\":130,\"name\":\"football\"},{\"cost\":270,\"name\":\"basketball\"}],\"isMale\":true,\"mother\":{\"age\":45,\"name\":\"Alice\"},\"name\":\"Tera\",\"weight\":52.34}";
         test(source, CoderTestStudent.class, CoderTestModel.Student.class);
+    }
+
+    /**
+     * 模拟安卓端的网络请求
+     */
+    @Test
+    public void httpTest() throws IOException {
+        Request request = new Request.Builder()
+                .url("http://localhost:8080/protobuf/getStudent")
+                .build();
+        OkHttpClient client = new OkHttpClient();
+        try (Response response = client.newCall(request).execute()) {
+            byte[] bytes = response.body().bytes();
+            CoderTestStudent student = new BasicDecoder().deserialize(bytes, CoderTestStudent.class);
+            System.out.println(JSON.toJSONString(student, SerializerFeature.PrettyFormat));
+        }
     }
 
     /**

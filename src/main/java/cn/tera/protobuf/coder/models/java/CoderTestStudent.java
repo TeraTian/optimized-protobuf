@@ -14,12 +14,12 @@ public class CoderTestStudent {
     public String name;
     public float weight;
 
-    public class Parent {
+    public static class Parent {
         public int age;
         public String name;
     }
 
-    public class Hobby {
+    public static class Hobby {
         public int cost;
         public String name;
     }
